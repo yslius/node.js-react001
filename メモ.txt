@@ -1,0 +1,33 @@
+https://qiita.com/tatsurou313/items/2ba0387806b07f442b8c
+上記URLの情報と自力で作ってみる
+
+npm install express
+express --view=ejs ex-gen-app
+npm install
+
+npm install sequelize
+npm install sequelize-cli
+npm install mysql2
+
+DB設定ファイルの初期化
+npx sequelize-cli init
+
+モデルemployeeの作成
+npx sequelize-cli model:generate --name employee --underscored --attributes 'name:string,department:string,sex:enum:{male,female,other},birth:date,joined_date:date,pay:bigint,note:string'
+npx sequelize-cli model:generate --name employee --underscored --attributes name:string,department:string,sex:string,birth:date,joined_date:date,pay:bigint,note:string
+
+DB作る
+CREATE DATABASE database_development001 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+マイグレーションを実行
+npx sequelize-cli db:migrate --env development
+
+シーディング
+npx sequelize-cli seed:generate --name sample-user
+npx sequelize-cli db:seed:all
+
+
+Next.js
+npx create-next-app next_app
+Next.jsの開始
+npm run dev
